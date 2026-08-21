@@ -1,9 +1,8 @@
 export const EXIT_URL = "https://www.weather.com";
 
-// Malawi's most widely spoken languages alongside English.
+// Languages supported by Safe Haven Malawi
 export const LANGUAGES = [
-  { code: "EN", label: "English" },
-  { code: "NY", label: "Chichewa" },
-  { code: "TUM", label: "Chitumbuka" },
-  { code: "YAO", label: "Chiyao" },
+  { code: "en", label: "English" },
+  { code: "ny", label: "Chichewa" },
+  { code: "tum", label: "Chitumbuka" }
 ];

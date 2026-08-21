@@ -1,0 +1,144 @@
+{
+  "header": {
+    "brand": "Safe Haven Malawi",
+    "language": "NY",
+    "quickExit": "Tulukani Mwachangu"
+  },
+
+  "hero": {
+    "location": "LILONGWE · THANDIZO LA NTHAWI YOMWEYO",
+    "title": "Simuli nokha.",
+    "subtitle": "Thandizo lotetezeka komanso lachinsinsi — pompano.",
+    "findShelters": "Pezani Malo Otetezeka Apafupi",
+    "anonymousReport": "Tumizani Lipoti Lachinsinsi Mosadziwika",
+    "privacyNotice": "Ndi zachinsinsi 100% komanso zaulere. Palibe chifukwa chokhala ndi akaunti."
+  },
+
+  
+  "reportForm": {
+    "title": "Nenani Chochitika",
+    "subtitle": "Simuli nokha. Lembani fomu yachinsinsi iyi kuti tikuthandizeni kulumikizana ndi ntchito zothandizira zomwe mukufuna.",
+
+    "personalInformation": "Zambiri Zaumwini",
+
+    "fullName": "Dzina Lonse",
+    "optional": "(Mwakufuna)",
+    "enterName": "Lowetsani dzina lanu",
+
+    "phoneNumber": "Nambala ya Foni",
+    "phonePlaceholder": "+265...",
+
+    "preferredContact": "Njira Yomwe Mukufuna Kulumikizidwira",
+    "selectContact": "Sankhani Njira Yolumikizirana",
+    "phoneCall": "Kuyimba Foni",
+    "sms": "SMS",
+    "whatsapp": "WhatsApp",
+    "email": "Imelo",
+    "doNotContact": "Musandilumikizane",
+
+    "district": "Chigawo",
+    "selectDistrict": "Sankhani Chigawo",
+
+    "safetyAssessment": "Kuwunika Chitetezo",
+    "currentlySafe": "Kodi muli pamalo otetezeka pakali pano?",
+    "perpetratorNearby": "Kodi munthu amene akukuchitirani nkhanza ali pafupi?",
+    "yes": "Inde",
+    "no": "Ayi",
+    "unsure": "Sindikudziwa",
+
+    "supportNeeded": "Thandizo Lomwe Mukufuna",
+    "safeShelter": "Malo Otetezeka Ogona",
+    "medicalCare": "Chithandizo cha Zachipatala",
+    "counselling": "Upangiri wa Maganizo",
+    "policeAssistance": "Thandizo la Apolisi",
+    "legalSupport": "Thandizo la Malamulo",
+    "otherSupport": "Thandizo Lina",
+
+    "additionalInformation": "Zambiri Zowonjezera",
+    "briefDescription": "Kufotokozera Mwachidule",
+    "descriptionPlaceholder": "Lembani zambiri zomwe muli omasuka kugawana...",
+
+    "confidentialityNotice": "Chidziwitso cha Chinsinsi",
+    "confidentialityText": "Zambiri zanu zidzasungidwa mwachinsinsi ndipo zidzagawidwa kokha ndi othandizira ovomerezeka kuti akuthandizeni kupeza thandizo lomwe mukufuna.",
+    "reportReceived": "lipoti lanu lidzalandiridwa, koma sitidzakulumikizani kuti tikufunseni zambiri pokhapokha mutasankha kuti tikulumikizeni.",
+
+    "submit": "Tumizani Lipoti",
+    "success": "Lipoti lanu latumizidwa bwino."
+  },
+
+  "services": {
+  "title": "Ntchito Zomwe Zikupezeka",
+  "shelters": {
+    "label": "Malo Othawirako",
+    "description": "Malo otetezeka okhala usikuuno"
+  },
+  "healthPep": {
+    "label": "Zaumoyo ndi PEP",
+    "description": "Chithandizo chaumoyo, PEP mkati mwa maola 72"
+  },
+  "policeVsu": {
+    "label": "Police VSU",
+    "description": "Magulu Othandiza Ozunzidwa"
+  },
+  "legalAid": {
+    "label": "Thandizo la Malamulo",
+    "description": "Dziwani za ufulu wanu, pezani thandizo"
+  }
+},
+
+"emergency": {
+  "title": "Manambala a Mwadzidzidzi",
+  "instruction": "Dinani nambala kuti muyimbe mwachindunji.",
+  "gbvLine": "Nambala ya GBV",
+  "childline": "Childline",
+  "police": "Apolisi"
+},
+
+ "rightsSection": {
+    "title": "Dziwani za Ufulu Wanu",
+    "legalProtectionRights": "Dziwani Ufulu Wanu wa Mwalamulo ndi Chitetezo"
+  },
+
+  "trustedPartners": {
+    "title": "Othandizana Odalirika",
+    "partners": {
+      "ministryGender": "Unduna wa Jenda",
+      "policeVsu": "Gulu la Apolisi la VSU",
+      "partnerNgo": "Bungwe Lothandizana"
+    }
+  },
+
+  "accessibility": {
+  "textSize": "Kukula kwa mawu",
+  "normal": "Wamba",
+  "large": "Kwakukulu",
+  "xLarge": "Kwakukulu kwambiri",
+  "highContrast": "Kusiyanitsa kwakukulu",
+  "on": "Kuyatsa",
+  "off": "Kuzimitsa"
+},
+
+  "historyHelp": {
+  "title": "Momwe Mungachotsere Mbiri Yanu Yosakatula Mosamala",
+  "chrome": "Chrome (Android):",
+  "chromeInstructions": "Tsegulani Menu (⋮) → History → Clear browsing data → sankhani \"History\" ndi \"Cookies\" → Clear data.",
+  "safari": "Safari (iPhone):",
+  "safariInstructions": "Tsegulani pulogalamu ya Settings → Safari → Clear History and Website Data.",
+  "safetyNote": "Izi zimachotsa mbiri yosakatula pa chipangizo chanu, koma sizichotsa zolemba zomwe zimasungidwa ndi kampani yanu ya foni kapena wopereka Wi-Fi. Ngati kuli kotetezeka, gwiritsani ntchito foni ya mnzanu kapena kompyuta ya laibulale ya anthu onse."
+},
+
+  "footer": {
+    "privacyPolicy": "Ndondomeko Yachinsinsi",
+    "termsOfService": "Malamulo Ogwiritsa Ntchito Ntchitoyi",
+    "contactUs": "Lumikizanani Nafe (Osati Zadzidzidzi)",
+    "copyright": "Safe Haven Malawi"
+  },
+
+
+  "language": {
+    "select": "Sankhani Chinenero",
+    "english": "Chingerezi",
+    "chichewa": "Chichewa",
+    "chitumbuka": "Chitumbuka"
+  }
+}

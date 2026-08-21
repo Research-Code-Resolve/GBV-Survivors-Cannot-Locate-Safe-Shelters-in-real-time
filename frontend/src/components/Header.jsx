@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Shield, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 const EXIT_URL = "https://www.weather.com";
 
 export default function Header() {
   const [isExiting, setIsExiting] = useState(false);
+  const { t } = useTranslation();
 
   function handleExitClick() {
     setIsExiting(true);
@@ -29,8 +31,12 @@ export default function Header() {
             style={{ background: "var(--primary)" }}
             className="h-9 w-9 shrink-0 rounded-lg flex items-center justify-center"
           >
-            <Shield className="h-5 w-5 text-white" strokeWidth={2.5} />
+            <Shield
+              className="h-5 w-5 text-white"
+              strokeWidth={2.5}
+            />
           </div>
+
           <span
             className="font-display font-semibold text-[1.05rem] truncate"
             style={{ color: "var(--primary-dark)" }}
@@ -41,15 +47,18 @@ export default function Header() {
 
         <div className="flex items-center gap-2 shrink-0">
           <LanguageSwitcher />
+
           <button
             onClick={handleExitClick}
             className="flex items-center gap-1.5 text-sm font-semibold text-white px-3 py-2 rounded-md hover:opacity-90 active:scale-95 transition"
             style={{ background: "var(--error)" }}
-            aria-label="Leave this site immediately"
+            aria-label={t("header.quickExit")}
           >
             <X className="h-4 w-4" strokeWidth={3} />
-            <span className="hidden sm:inline">Quick </span>
-            Exit
+
+            <span className="hidden sm:inline">
+              {t("header.quickExit")}
+            </span>
           </button>
         </div>
       </div>
