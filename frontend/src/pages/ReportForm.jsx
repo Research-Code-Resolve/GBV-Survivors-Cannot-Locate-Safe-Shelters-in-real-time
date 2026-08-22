@@ -1,6 +1,9 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createReportSchema } from "../schemas/reportSchema";
 import Header from "../components/Header";
+import { useMemo } from "react";
 import {
   FaUser,
   FaPhoneAlt,
@@ -8,51 +11,36 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 
-function ReportForm() {
-  const { t } = useTranslation();
 
-  const [formData, setFormData] = useState({
-    fullName: "",
-    phone: "",
-    contactMethod: "",
-    district: "",
-    safeNow: "",
-    danger: "",
-    supportNeeded: [],
-    description: "",
+
+function ReportForm() {
+  const { t, i18n } = useTranslation();
+
+const reportSchema = useMemo(
+  () => createReportSchema(t),
+  [i18n.language]
+);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(reportSchema),
+    defaultValues: {
+      fullName: "",
+      phone: "",
+      contactMethod: "",
+      district: "",
+      safeNow: "",
+      danger: "",
+      supportNeeded: [],
+      description: "",
+    },
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleCheckbox = (e) => {
-    const { value, checked } = e.target;
-
-    if (checked) {
-      setFormData({
-        ...formData,
-        supportNeeded: [...formData.supportNeeded, value],
-      });
-    } else {
-      setFormData({
-        ...formData,
-        supportNeeded: formData.supportNeeded.filter(
-          (item) => item !== value
-        ),
-      });
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    console.log(formData);
+  const onSubmit = (data) => {
+    console.log(data);
 
     alert(t("reportForm.success"));
   };
@@ -65,10 +53,8 @@ function ReportForm() {
       <div className="min-h-screen bg-[#F7F8FA] py-10 px-5 font-['Inter']">
         <div className="max-w-3xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
 
-          {/* Purple Form Header */}
-
+          {/* Form Header */}
           <div className="bg-[#EEE8FF] p-8 text-center">
-
             <h1 className="font-['Lexend'] text-4xl font-bold text-[#1F2937]">
               {t("reportForm.title")}
             </h1>
@@ -76,17 +62,17 @@ function ReportForm() {
             <p className="mt-4 text-black max-w-xl mx-auto leading-relaxed">
               {t("reportForm.subtitle")}
             </p>
-
           </div>
 
           {/* Form */}
-
           <form
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             className="p-8 space-y-8"
           >
 
-            {/* Personal Information */}
+            {/* =========================
+                PERSONAL INFORMATION
+            ========================== */}
 
             <div>
               <h2 className="font-['Lexend'] text-2xl text-[#4A1268] font-semibold mb-6">
@@ -96,7 +82,6 @@ function ReportForm() {
               <div className="grid md:grid-cols-2 gap-6">
 
                 {/* Full Name */}
-
                 <div>
                   <label className="flex items-center gap-2 mb-2 font-medium text-gray-700">
                     <FaUser className="text-[#4A1268]" />
@@ -110,16 +95,19 @@ function ReportForm() {
 
                   <input
                     type="text"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleChange}
+                    {...register("fullName")}
                     placeholder={t("reportForm.enterName")}
                     className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-[#6B46C1] focus:outline-none"
                   />
+
+                  {errors.fullName && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {errors.fullName.message}
+                    </p>
+                  )}
                 </div>
 
                 {/* Phone */}
-
                 <div>
                   <label className="flex items-center gap-2 mb-2 font-medium text-gray-700">
                     <FaPhoneAlt className="text-[#4A1268]" />
@@ -133,16 +121,19 @@ function ReportForm() {
 
                   <input
                     type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
+                    {...register("phone")}
                     placeholder={t("reportForm.phonePlaceholder")}
                     className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-[#6B46C1] focus:outline-none"
                   />
+
+                  {errors.phone && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {errors.phone.message}
+                    </p>
+                  )}
                 </div>
 
                 {/* Preferred Contact */}
-
                 <div>
                   <label className="flex items-center gap-2 mb-2 font-medium text-gray-700">
                     <FaEnvelope className="text-[#4A1268]" />
@@ -151,10 +142,7 @@ function ReportForm() {
                   </label>
 
                   <select
-                    required
-                    name="contactMethod"
-                    value={formData.contactMethod}
-                    onChange={handleChange}
+                    {...register("contactMethod")}
                     className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-[#6B46C1] focus:outline-none"
                   >
                     <option value="">
@@ -173,18 +161,16 @@ function ReportForm() {
                       {t("reportForm.whatsapp")}
                     </option>
 
-                    <option value="Email">
-                      {t("reportForm.email")}
-                    </option>
-
+            
                     <option value="Do Not Contact Me">
                       {t("reportForm.doNotContact")}
                     </option>
                   </select>
+
+                  
                 </div>
 
                 {/* District */}
-
                 <div>
                   <label className="flex items-center gap-2 mb-2 font-medium text-gray-700">
                     <FaMapMarkerAlt className="text-[#4A1268]" />
@@ -193,50 +179,54 @@ function ReportForm() {
                   </label>
 
                   <select
-                    required
-                    name="district"
-                    value={formData.district}
-                    onChange={handleChange}
+                    {...register("district")}
                     className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-[#6B46C1] focus:outline-none"
                   >
                     <option value="">
                       {t("reportForm.selectDistrict")}
                     </option>
 
-                    <option>Balaka</option>
-                    <option>Blantyre</option>
-                    <option>Chikwawa</option>
-                    <option>Chiradzulu</option>
-                    <option>Dedza</option>
-                    <option>Dowa</option>
-                    <option>Karonga</option>
-                    <option>Kasungu</option>
-                    <option>Likoma</option>
-                    <option>Lilongwe</option>
-                    <option>Machinga</option>
-                    <option>Mangochi</option>
-                    <option>Mchinji</option>
-                    <option>Mulanje</option>
-                    <option>Mwanza</option>
-                    <option>Mzimba</option>
-                    <option>Neno</option>
-                    <option>Nkhata Bay</option>
-                    <option>Nkhotakota</option>
-                    <option>Nsanje</option>
-                    <option>Ntcheu</option>
-                    <option>Ntchisi</option>
-                    <option>Phalombe</option>
-                    <option>Rumphi</option>
-                    <option>Salima</option>
-                    <option>Thyolo</option>
-                    <option>Zomba</option>
+                    <option value="Balaka">Balaka</option>
+                    <option value="Blantyre">Blantyre</option>
+                    <option value="Chikwawa">Chikwawa</option>
+                    <option value="Chiradzulu">Chiradzulu</option>
+                    <option value="Dedza">Dedza</option>
+                    <option value="Dowa">Dowa</option>
+                    <option value="Karonga">Karonga</option>
+                    <option value="Kasungu">Kasungu</option>
+                    <option value="Likoma">Likoma</option>
+                    <option value="Lilongwe">Lilongwe</option>
+                    <option value="Machinga">Machinga</option>
+                    <option value="Mangochi">Mangochi</option>
+                    <option value="Mchinji">Mchinji</option>
+                    <option value="Mulanje">Mulanje</option>
+                    <option value="Mwanza">Mwanza</option>
+                    <option value="Mzimba">Mzimba</option>
+                    <option value="Neno">Neno</option>
+                    <option value="Nkhata Bay">Nkhata Bay</option>
+                    <option value="Nkhotakota">Nkhotakota</option>
+                    <option value="Nsanje">Nsanje</option>
+                    <option value="Ntcheu">Ntcheu</option>
+                    <option value="Ntchisi">Ntchisi</option>
+                    <option value="Phalombe">Phalombe</option>
+                    <option value="Rumphi">Rumphi</option>
+                    <option value="Salima">Salima</option>
+                    <option value="Thyolo">Thyolo</option>
+                    <option value="Zomba">Zomba</option>
                   </select>
-                </div>
 
+                  {errors.district && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {errors.district.message}
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
 
-            {/* Safety Assessment */}
+            {/* =========================
+                SAFETY ASSESSMENT
+            ========================== */}
 
             <div>
               <h2 className="font-['Lexend'] text-2xl text-[#4A1268] font-semibold mb-6">
@@ -246,7 +236,6 @@ function ReportForm() {
               <div className="space-y-8">
 
                 {/* Currently Safe */}
-
                 <div>
                   <label className="block mb-3 font-medium text-gray-700">
                     {t("reportForm.currentlySafe")} *
@@ -257,10 +246,8 @@ function ReportForm() {
                     <label className="flex items-center gap-3">
                       <input
                         type="radio"
-                        name="safeNow"
                         value="Yes"
-                        checked={formData.safeNow === "Yes"}
-                        onChange={handleChange}
+                        {...register("safeNow")}
                         className="accent-[#6B46C1]"
                       />
 
@@ -270,21 +257,23 @@ function ReportForm() {
                     <label className="flex items-center gap-3">
                       <input
                         type="radio"
-                        name="safeNow"
                         value="No"
-                        checked={formData.safeNow === "No"}
-                        onChange={handleChange}
+                        {...register("safeNow")}
                         className="accent-[#6B46C1]"
                       />
 
                       {t("reportForm.no")}
                     </label>
-
                   </div>
+
+                  {errors.safeNow && (
+                    <p className="text-red-600 text-sm mt-2">
+                      {errors.safeNow.message}
+                    </p>
+                  )}
                 </div>
 
                 {/* Perpetrator Nearby */}
-
                 <div>
                   <label className="block mb-3 font-medium text-gray-700">
                     {t("reportForm.perpetratorNearby")} *
@@ -295,10 +284,8 @@ function ReportForm() {
                     <label className="flex items-center gap-3">
                       <input
                         type="radio"
-                        name="danger"
                         value="Yes"
-                        checked={formData.danger === "Yes"}
-                        onChange={handleChange}
+                        {...register("danger")}
                         className="accent-[#6B46C1]"
                       />
 
@@ -308,10 +295,8 @@ function ReportForm() {
                     <label className="flex items-center gap-3">
                       <input
                         type="radio"
-                        name="danger"
                         value="No"
-                        checked={formData.danger === "No"}
-                        onChange={handleChange}
+                        {...register("danger")}
                         className="accent-[#6B46C1]"
                       />
 
@@ -321,23 +306,27 @@ function ReportForm() {
                     <label className="flex items-center gap-3">
                       <input
                         type="radio"
-                        name="danger"
                         value="Unsure"
-                        checked={formData.danger === "Unsure"}
-                        onChange={handleChange}
+                        {...register("danger")}
                         className="accent-[#6B46C1]"
                       />
 
                       {t("reportForm.unsure")}
                     </label>
-
                   </div>
-                </div>
 
+                  {errors.danger && (
+                    <p className="text-red-600 text-sm mt-2">
+                      {errors.danger.message}
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
 
-            {/* Support Needed */}
+            {/* =========================
+                SUPPORT NEEDED
+            ========================== */}
 
             <div>
               <h2 className="font-['Lexend'] text-2xl text-[#4A1268] font-semibold mb-6">
@@ -346,76 +335,89 @@ function ReportForm() {
 
               <div className="grid md:grid-cols-2 gap-4">
 
+                {/* Safe Shelter */}
                 <label className="flex items-center gap-3 border rounded-xl p-4 hover:bg-[#F9F5FF] cursor-pointer">
                   <input
                     type="checkbox"
                     value="Safe Shelter"
-                    onChange={handleCheckbox}
+                    {...register("supportNeeded")}
                     className="accent-[#6B46C1]"
                   />
 
                   {t("reportForm.safeShelter")}
                 </label>
 
+                {/* Medical Care */}
                 <label className="flex items-center gap-3 border rounded-xl p-4 hover:bg-[#F9F5FF] cursor-pointer">
                   <input
                     type="checkbox"
                     value="Medical Care"
-                    onChange={handleCheckbox}
+                    {...register("supportNeeded")}
                     className="accent-[#6B46C1]"
                   />
 
                   {t("reportForm.medicalCare")}
                 </label>
 
+                {/* Counselling */}
                 <label className="flex items-center gap-3 border rounded-xl p-4 hover:bg-[#F9F5FF] cursor-pointer">
                   <input
                     type="checkbox"
                     value="Counselling"
-                    onChange={handleCheckbox}
+                    {...register("supportNeeded")}
                     className="accent-[#6B46C1]"
                   />
 
                   {t("reportForm.counselling")}
                 </label>
 
+                {/* Police Assistance */}
                 <label className="flex items-center gap-3 border rounded-xl p-4 hover:bg-[#F9F5FF] cursor-pointer">
                   <input
                     type="checkbox"
                     value="Police Assistance"
-                    onChange={handleCheckbox}
+                    {...register("supportNeeded")}
                     className="accent-[#6B46C1]"
                   />
 
                   {t("reportForm.policeAssistance")}
                 </label>
 
+                {/* Legal Support */}
                 <label className="flex items-center gap-3 border rounded-xl p-4 hover:bg-[#F9F5FF] cursor-pointer">
                   <input
                     type="checkbox"
                     value="Legal Support"
-                    onChange={handleCheckbox}
+                    {...register("supportNeeded")}
                     className="accent-[#6B46C1]"
                   />
 
                   {t("reportForm.legalSupport")}
                 </label>
 
+                {/* Other Support */}
                 <label className="flex items-center gap-3 border rounded-xl p-4 hover:bg-[#F9F5FF] cursor-pointer">
                   <input
                     type="checkbox"
                     value="Other Support"
-                    onChange={handleCheckbox}
+                    {...register("supportNeeded")}
                     className="accent-[#6B46C1]"
                   />
 
                   {t("reportForm.otherSupport")}
                 </label>
-
               </div>
+
+              {errors.supportNeeded && (
+                <p className="text-red-600 text-sm mt-2">
+                  {errors.supportNeeded.message}
+                </p>
+              )}
             </div>
 
-            {/* Additional Information */}
+            {/* =========================
+                ADDITIONAL INFORMATION
+            ========================== */}
 
             <div>
               <h2 className="font-['Lexend'] text-2xl text-[#4A1268] font-semibold mb-6">
@@ -431,16 +433,22 @@ function ReportForm() {
               </label>
 
               <textarea
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
+                {...register("description")}
                 rows="5"
                 placeholder={t("reportForm.descriptionPlaceholder")}
                 className="w-full border border-gray-300 rounded-xl p-4 resize-none focus:ring-2 focus:ring-[#6B46C1] focus:outline-none"
               ></textarea>
+
+              {errors.description && (
+                <p className="text-red-600 text-sm mt-1">
+                  {errors.description.message}
+                </p>
+              )}
             </div>
 
-            {/* Confidentiality Notice */}
+            {/* =========================
+                CONFIDENTIALITY NOTICE
+            ========================== */}
 
             <div className="bg-[#F9F5FF] border border-[#6A1B9A] rounded-2xl p-6">
 
@@ -454,14 +462,16 @@ function ReportForm() {
                 <strong>
                   "{t("reportForm.doNotContact")}"
                 </strong>
+
                 {", "}
-                
+
                 {t("reportForm.reportReceived")}
               </p>
-
             </div>
 
-            {/* Submit Button */}
+            {/* =========================
+                SUBMIT BUTTON
+            ========================== */}
 
             <button
               type="submit"

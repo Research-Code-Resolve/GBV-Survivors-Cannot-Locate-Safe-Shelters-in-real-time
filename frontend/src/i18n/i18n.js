@@ -3,7 +3,7 @@ import { initReactI18next } from "react-i18next";
 
 import en from "./locales/en.json";
 import ny from "./locales/ny.json";
-import tum from "./locales/tum.json";
+
 
 i18n
   .use(initReactI18next)
@@ -14,9 +14,6 @@ i18n
       },
       ny: {
         translation: ny
-      },
-      tum: {
-        translation: tum
       }
     },
 

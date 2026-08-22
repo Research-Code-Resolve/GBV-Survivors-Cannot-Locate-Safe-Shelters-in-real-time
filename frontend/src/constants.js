@@ -4,5 +4,4 @@ export const EXIT_URL = "https://www.weather.com";
 export const LANGUAGES = [
   { code: "en", label: "English" },
   { code: "ny", label: "Chichewa" },
-  { code: "tum", label: "Chitumbuka" }
 ];

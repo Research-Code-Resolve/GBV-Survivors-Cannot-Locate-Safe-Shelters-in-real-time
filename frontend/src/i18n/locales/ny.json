@@ -66,6 +66,16 @@
     "success": "Lipoti lanu latumizidwa bwino."
   },
 
+   "validation": {
+  "district": "Chonde sankhani dera lanu.",
+  "safeNow": "Chonde sonyezani ngati muli pamalo otetezeka pano.",
+  "danger": "Chonde sonyezani ngati munthu amene akukuchitirani nkhanza ali pafupi.",
+  "phoneRequired": "Chonde lembani nambala yanu ya foni chifukwa mwasankha njira yolumikizirana.",
+  "invalidPhone": "Chonde lembani nambala ya foni yolondola."
+},
+
+  
+
   "services": {
   "title": "Ntchito Zomwe Zikupezeka",
   "shelters": {
@@ -102,7 +112,7 @@
   "trustedPartners": {
     "title": "Othandizana Odalirika",
     "partners": {
-      "ministryGender": "Unduna wa Jenda",
+      "ministryGender": "Unduna woona za kusiyana kwa amai ndi abambo",
       "policeVsu": "Gulu la Apolisi la VSU",
       "partnerNgo": "Bungwe Lothandizana"
     }
@@ -138,7 +148,6 @@
   "language": {
     "select": "Sankhani Chinenero",
     "english": "Chingerezi",
-    "chichewa": "Chichewa",
-    "chitumbuka": "Chitumbuka"
+    "chichewa": "Chichewa"
   }
 }

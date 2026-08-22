@@ -67,7 +67,16 @@
     "success": "Your report has been submitted successfully."
   },
 
+   "validation": {
+  "district": "Please select your district.",
+  "safeNow": "Please indicate whether you are currently safe.",
+  "danger": "Please indicate whether the perpetrator is nearby.",
+  "phoneRequired": "Please enter your phone number for the selected contact method.",
+  "invalidPhone": "Please enter a valid phone number."
+},
 
+
+ 
 
   "services": {
   "title": "Services Offered",
@@ -139,11 +148,12 @@
     "copyright": "Safe Haven Malawi"
   },
 
+
+
   "language": {
     "select": "Select Language",
     "english": "English",
-    "chichewa": "Chichewa",
-    "chitumbuka": "Chitumbuka"
+    "chichewa": "Chichewa"
   }
 }
 
