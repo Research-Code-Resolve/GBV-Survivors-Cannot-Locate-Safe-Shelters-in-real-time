@@ -63,6 +63,8 @@
     "reportReceived": "lipoti lanu lidzalandiridwa, koma sitidzakulumikizani kuti tikufunseni zambiri pokhapokha mutasankha kuti tikulumikizeni.",
 
     "submit": "Tumizani Lipoti",
+    "submitting": "Tikutumiza...",
+    "submitError": "Papezeka vuto potumiza lipoti lanu. Chonde yesaninso.",
     "success": "Lipoti lanu latumizidwa bwino."
   },
 

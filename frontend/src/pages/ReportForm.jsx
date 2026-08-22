@@ -3,28 +3,21 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createReportSchema } from "../schemas/reportSchema";
 import Header from "../components/Header";
-import { useMemo } from "react";
-import {
-  FaUser,
-  FaPhoneAlt,
-  FaMapMarkerAlt,
-  FaEnvelope,
-} from "react-icons/fa";
-
-
+import { useMemo, useState } from "react";
+import { FaUser, FaPhoneAlt, FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
+import { supabase } from "../lib/supabaseClient";
 
 function ReportForm() {
   const { t, i18n } = useTranslation();
+  const [submitError, setSubmitError] = useState(null);
 
-const reportSchema = useMemo(
-  () => createReportSchema(t),
-  [i18n.language]
-);
+  const reportSchema = useMemo(() => createReportSchema(t), [i18n.language]);
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(reportSchema),
     defaultValues: {
@@ -39,9 +32,30 @@ const reportSchema = useMemo(
     },
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    setSubmitError(null);
 
+    // Map camelCase form fields to the snake_case DB columns.
+    // No .select() on the insert -- the anon role has no SELECT
+    // policy on this table, so requesting data back would just fail.
+    const { error } = await supabase.from("reports").insert({
+      full_name: data.fullName || null,
+      phone: data.phone || null,
+      contact_method: data.contactMethod || null,
+      district: data.district,
+      safe_now: data.safeNow,
+      danger: data.danger,
+      support_needed: data.supportNeeded,
+      description: data.description || null,
+    });
+
+    if (error) {
+      console.error("Report submission failed:", error);
+      setSubmitError(t("reportForm.submitError"));
+      return;
+    }
+
+    reset();
     alert(t("reportForm.success"));
   };
 
@@ -52,7 +66,6 @@ const reportSchema = useMemo(
 
       <div className="min-h-screen bg-[#F7F8FA] py-10 px-5 font-['Inter']">
         <div className="max-w-3xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
-
           {/* Form Header */}
           <div className="bg-[#EEE8FF] p-8 text-center">
             <h1 className="font-['Lexend'] text-4xl font-bold text-[#1F2937]">
@@ -65,11 +78,7 @@ const reportSchema = useMemo(
           </div>
 
           {/* Form */}
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="p-8 space-y-8"
-          >
-
+          <form onSubmit={handleSubmit(onSubmit)} className="p-8 space-y-8">
             {/* =========================
                 PERSONAL INFORMATION
             ========================== */}
@@ -80,7 +89,6 @@ const reportSchema = useMemo(
               </h2>
 
               <div className="grid md:grid-cols-2 gap-6">
-
                 {/* Full Name */}
                 <div>
                   <label className="flex items-center gap-2 mb-2 font-medium text-gray-700">
@@ -137,7 +145,6 @@ const reportSchema = useMemo(
                 <div>
                   <label className="flex items-center gap-2 mb-2 font-medium text-gray-700">
                     <FaEnvelope className="text-[#4A1268]" />
-
                     {t("reportForm.preferredContact")} *
                   </label>
 
@@ -145,36 +152,26 @@ const reportSchema = useMemo(
                     {...register("contactMethod")}
                     className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-[#6B46C1] focus:outline-none"
                   >
-                    <option value="">
-                      {t("reportForm.selectContact")}
-                    </option>
+                    <option value="">{t("reportForm.selectContact")}</option>
 
                     <option value="Phone Call">
                       {t("reportForm.phoneCall")}
                     </option>
 
-                    <option value="SMS">
-                      {t("reportForm.sms")}
-                    </option>
+                    <option value="SMS">{t("reportForm.sms")}</option>
 
-                    <option value="WhatsApp">
-                      {t("reportForm.whatsapp")}
-                    </option>
+                    <option value="WhatsApp">{t("reportForm.whatsapp")}</option>
 
-            
                     <option value="Do Not Contact Me">
                       {t("reportForm.doNotContact")}
                     </option>
                   </select>
-
-                  
                 </div>
 
                 {/* District */}
                 <div>
                   <label className="flex items-center gap-2 mb-2 font-medium text-gray-700">
                     <FaMapMarkerAlt className="text-[#4A1268]" />
-
                     {t("reportForm.district")} *
                   </label>
 
@@ -182,9 +179,7 @@ const reportSchema = useMemo(
                     {...register("district")}
                     className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-[#6B46C1] focus:outline-none"
                   >
-                    <option value="">
-                      {t("reportForm.selectDistrict")}
-                    </option>
+                    <option value="">{t("reportForm.selectDistrict")}</option>
 
                     <option value="Balaka">Balaka</option>
                     <option value="Blantyre">Blantyre</option>
@@ -234,7 +229,6 @@ const reportSchema = useMemo(
               </h2>
 
               <div className="space-y-8">
-
                 {/* Currently Safe */}
                 <div>
                   <label className="block mb-3 font-medium text-gray-700">
@@ -242,7 +236,6 @@ const reportSchema = useMemo(
                   </label>
 
                   <div className="flex flex-col gap-3">
-
                     <label className="flex items-center gap-3">
                       <input
                         type="radio"
@@ -280,7 +273,6 @@ const reportSchema = useMemo(
                   </label>
 
                   <div className="flex flex-col gap-3">
-
                     <label className="flex items-center gap-3">
                       <input
                         type="radio"
@@ -334,7 +326,6 @@ const reportSchema = useMemo(
               </h2>
 
               <div className="grid md:grid-cols-2 gap-4">
-
                 {/* Safe Shelter */}
                 <label className="flex items-center gap-3 border rounded-xl p-4 hover:bg-[#F9F5FF] cursor-pointer">
                   <input
@@ -426,7 +417,6 @@ const reportSchema = useMemo(
 
               <label className="block mb-2 font-medium text-gray-700">
                 {t("reportForm.briefDescription")}{" "}
-
                 <span className="text-gray-400 text-sm">
                   {t("reportForm.optional")}
                 </span>
@@ -451,20 +441,14 @@ const reportSchema = useMemo(
             ========================== */}
 
             <div className="bg-[#F9F5FF] border border-[#6A1B9A] rounded-2xl p-6">
-
               <h3 className="font-['Lexend'] text-lg font-semibold text-[#6B46C1] mb-2">
                 {t("reportForm.confidentialityNotice")}
               </h3>
 
               <p className="text-gray-700 leading-relaxed">
                 {t("reportForm.confidentialityText")}{" "}
-
-                <strong>
-                  "{t("reportForm.doNotContact")}"
-                </strong>
-
+                <strong>"{t("reportForm.doNotContact")}"</strong>
                 {", "}
-
                 {t("reportForm.reportReceived")}
               </p>
             </div>
@@ -473,13 +457,21 @@ const reportSchema = useMemo(
                 SUBMIT BUTTON
             ========================== */}
 
+            {submitError && (
+              <p className="text-red-600 text-sm text-center -mb-2">
+                {submitError}
+              </p>
+            )}
+
             <button
               type="submit"
-              className="w-full bg-[#2F855A] hover:bg-[#276749] text-white py-4 rounded-2xl text-lg font-semibold transition duration-300 shadow-lg"
+              disabled={isSubmitting}
+              className="w-full bg-[#2F855A] hover:bg-[#276749] disabled:opacity-60 disabled:cursor-not-allowed text-white py-4 rounded-2xl text-lg font-semibold transition duration-300 shadow-lg"
             >
-              {t("reportForm.submit")}
+              {isSubmitting
+                ? t("reportForm.submitting")
+                : t("reportForm.submit")}
             </button>
-
           </form>
         </div>
       </div>

@@ -64,6 +64,8 @@
     "reportReceived": "your report will still be received, but no follow-up communication will be initiated unless you choose otherwise.",
 
     "submit": "Submit Report",
+    "submitting": "Submitting...",
+    "submitError": "Something went wrong sending your report. Please try again.",
     "success": "Your report has been submitted successfully."
   },
 
