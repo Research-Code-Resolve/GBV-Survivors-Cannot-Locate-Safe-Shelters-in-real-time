@@ -1,0 +1,51 @@
+case_id,district,currently_safe,perpetrator_nearby,support_needed,safe_shelter,medical_care,counselling,police_assistance,legal_support,other_support,priority_level
+C001,Lilongwe,No,Yes,Safe Shelter; Medical Care; Police Assistance,1,1,0,1,0,0,Urgent
+C002,Dedza,No,Yes,Safe Shelter; Counselling; Police Assistance,1,0,1,1,0,0,Urgent
+C003,Dowa,No,Yes,Safe Shelter; Medical Care; Counselling; Police Assistance,1,1,1,1,0,0,Urgent
+C004,Mchinji,No,Yes,Safe Shelter; Police Assistance; Legal Support,1,0,0,1,1,0,Urgent
+C005,Kasungu,No,Unsure,Safe Shelter; Medical Care; Police Assistance,1,1,0,1,0,0,Urgent
+C006,Salima,No,Yes,Safe Shelter; Counselling; Legal Support,1,0,1,0,1,0,Urgent
+C007,Ntcheu,No,Yes,Safe Shelter; Medical Care; Police Assistance; Legal Support,1,1,0,1,1,0,Urgent
+C008,Lilongwe,No,Unsure,Safe Shelter; Counselling; Police Assistance,1,0,1,1,0,0,Urgent
+C009,Dedza,No,Yes,Safe Shelter; Police Assistance; Other Support,1,0,0,1,0,1,Urgent
+C010,Dowa,No,Yes,Safe Shelter; Medical Care; Counselling,1,1,1,0,0,0,Urgent
+C011,Mchinji,No,Yes,Safe Shelter; Medical Care; Legal Support,1,1,0,0,1,0,Urgent
+C012,Kasungu,No,Unsure,Safe Shelter; Counselling; Police Assistance; Legal Support,1,0,1,1,1,0,Urgent
+C013,Salima,No,Yes,Medical Care; Police Assistance,0,1,0,1,0,0,Urgent
+C014,Ntcheu,No,Yes,Safe Shelter; Counselling; Police Assistance; Other Support,1,0,1,1,0,1,Urgent
+C015,Lilongwe,No,Unsure,Safe Shelter; Medical Care; Counselling; Police Assistance; Legal Support,1,1,1,1,1,0,Urgent
+C016,Dedza,No,Yes,Safe Shelter; Police Assistance; Legal Support,1,0,0,1,1,0,Urgent
+C017,Dowa,No,Yes,Safe Shelter; Medical Care; Police Assistance; Other Support,1,1,0,1,0,1,Urgent
+C018,Mchinji,No,No,Safe Shelter; Counselling,1,0,1,0,0,0,High
+C019,Kasungu,No,No,Safe Shelter; Medical Care,1,1,0,0,0,0,High
+C020,Salima,Yes,Yes,Safe Shelter; Counselling; Police Assistance,1,0,1,1,0,0,High
+C021,Ntcheu,Yes,No,Safe Shelter; Police Assistance; Legal Support,1,0,0,1,1,0,High
+C022,Lilongwe,Yes,No,Safe Shelter; Medical Care; Legal Support,1,1,0,0,1,0,High
+C023,Dedza,No,No,Medical Care; Counselling,0,1,1,0,0,0,High
+C024,Dowa,Yes,Unsure,Safe Shelter; Counselling,1,0,1,0,0,0,High
+C025,Mchinji,No,No,Safe Shelter; Legal Support,1,0,0,0,1,0,High
+C026,Kasungu,Yes,No,Medical Care; Police Assistance,0,1,0,1,0,0,High
+C027,Salima,Yes,Unsure,Safe Shelter; Police Assistance,1,0,0,1,0,0,High
+C028,Ntcheu,No,No,Counselling; Police Assistance; Legal Support,0,0,1,1,1,0,High
+C029,Lilongwe,Yes,No,Safe Shelter; Counselling; Other Support,1,0,1,0,0,1,High
+C030,Dedza,Yes,No,Medical Care; Legal Support,0,1,0,0,1,0,High
+C031,Dowa,No,No,Safe Shelter; Counselling; Legal Support,1,0,1,0,1,0,High
+C032,Mchinji,Yes,Unsure,Medical Care; Counselling,0,1,1,0,0,0,High
+C033,Kasungu,Yes,No,Counselling; Police Assistance; Legal Support,0,0,1,1,1,0,High
+C034,Salima,No,No,Safe Shelter; Police Assistance; Other Support,1,0,0,1,0,1,High
+C035,Ntcheu,Yes,No,Counselling,0,0,1,0,0,0,Standard
+C036,Lilongwe,Yes,No,Medical Care,0,1,0,0,0,0,Standard
+C037,Dedza,Yes,No,Police Assistance,0,0,0,1,0,0,Standard
+C038,Dowa,Yes,No,Counselling; Legal Support,0,0,1,0,1,0,Standard
+C039,Mchinji,Yes,No,Legal Support,0,0,0,0,1,0,Standard
+C040,Kasungu,Yes,No,Counselling; Other Support,0,0,1,0,0,1,Standard
+C041,Salima,Yes,No,Medical Care; Police Assistance,0,1,0,1,0,0,Standard
+C042,Ntcheu,Yes,No,Counselling; Legal Support,0,0,1,0,1,0,Standard
+C043,Lilongwe,Yes,No,Legal Support,0,0,0,0,1,0,Standard
+C044,Dedza,Yes,No,Counselling; Police Assistance,0,0,1,1,0,0,Standard
+C045,Dowa,Yes,No,Medical Care; Legal Support,0,1,0,0,1,0,Standard
+C046,Mchinji,Yes,No,Counselling,0,0,1,0,0,0,Standard
+C047,Kasungu,Yes,No,Legal Support; Other Support,0,0,0,0,1,1,Standard
+C048,Salima,Yes,No,Medical Care; Other Support,0,1,0,0,0,1,Standard
+C049,Ntcheu,Yes,No,Counselling; Police Assistance; Other Support,0,0,1,1,0,1,Standard
+C050,Lilongwe,Yes,No,Police Assistance; Legal Support,0,0,0,1,1,0,Standard
