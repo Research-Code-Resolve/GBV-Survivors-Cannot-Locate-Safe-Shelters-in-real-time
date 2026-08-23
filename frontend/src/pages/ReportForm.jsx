@@ -4,14 +4,24 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createReportSchema } from "../schemas/reportSchema";
 import Header from "../components/Header";
 import { useMemo, useState } from "react";
-import { FaUser, FaPhoneAlt, FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
+import {
+  FaUser,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
+  FaEnvelope,
+} from "react-icons/fa";
 import { supabase } from "../lib/supabaseClient";
+
+
 
 function ReportForm() {
   const { t, i18n } = useTranslation();
   const [submitError, setSubmitError] = useState(null);
 
-  const reportSchema = useMemo(() => createReportSchema(t), [i18n.language]);
+const reportSchema = useMemo(
+  () => createReportSchema(t),
+  [i18n.language]
+);
 
   const {
     register,
@@ -66,6 +76,7 @@ function ReportForm() {
 
       <div className="min-h-screen bg-[#F7F8FA] py-10 px-5 font-['Inter']">
         <div className="max-w-3xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
+
           {/* Form Header */}
           <div className="bg-[#EEE8FF] p-8 text-center">
             <h1 className="font-['Lexend'] text-4xl font-bold text-[#1F2937]">
@@ -78,7 +89,11 @@ function ReportForm() {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit(onSubmit)} className="p-8 space-y-8">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="p-8 space-y-8"
+          >
+
             {/* =========================
                 PERSONAL INFORMATION
             ========================== */}
@@ -89,6 +104,7 @@ function ReportForm() {
               </h2>
 
               <div className="grid md:grid-cols-2 gap-6">
+
                 {/* Full Name */}
                 <div>
                   <label className="flex items-center gap-2 mb-2 font-medium text-gray-700">
@@ -145,6 +161,7 @@ function ReportForm() {
                 <div>
                   <label className="flex items-center gap-2 mb-2 font-medium text-gray-700">
                     <FaEnvelope className="text-[#4A1268]" />
+
                     {t("reportForm.preferredContact")} *
                   </label>
 
@@ -152,26 +169,36 @@ function ReportForm() {
                     {...register("contactMethod")}
                     className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-[#6B46C1] focus:outline-none"
                   >
-                    <option value="">{t("reportForm.selectContact")}</option>
+                    <option value="">
+                      {t("reportForm.selectContact")}
+                    </option>
 
                     <option value="Phone Call">
                       {t("reportForm.phoneCall")}
                     </option>
 
-                    <option value="SMS">{t("reportForm.sms")}</option>
+                    <option value="SMS">
+                      {t("reportForm.sms")}
+                    </option>
 
-                    <option value="WhatsApp">{t("reportForm.whatsapp")}</option>
+                    <option value="WhatsApp">
+                      {t("reportForm.whatsapp")}
+                    </option>
 
+            
                     <option value="Do Not Contact Me">
                       {t("reportForm.doNotContact")}
                     </option>
                   </select>
+
+                  
                 </div>
 
                 {/* District */}
                 <div>
                   <label className="flex items-center gap-2 mb-2 font-medium text-gray-700">
                     <FaMapMarkerAlt className="text-[#4A1268]" />
+
                     {t("reportForm.district")} *
                   </label>
 
@@ -179,7 +206,9 @@ function ReportForm() {
                     {...register("district")}
                     className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-[#6B46C1] focus:outline-none"
                   >
-                    <option value="">{t("reportForm.selectDistrict")}</option>
+                    <option value="">
+                      {t("reportForm.selectDistrict")}
+                    </option>
 
                     <option value="Balaka">Balaka</option>
                     <option value="Blantyre">Blantyre</option>
@@ -229,6 +258,7 @@ function ReportForm() {
               </h2>
 
               <div className="space-y-8">
+
                 {/* Currently Safe */}
                 <div>
                   <label className="block mb-3 font-medium text-gray-700">
@@ -236,6 +266,7 @@ function ReportForm() {
                   </label>
 
                   <div className="flex flex-col gap-3">
+
                     <label className="flex items-center gap-3">
                       <input
                         type="radio"
@@ -273,6 +304,7 @@ function ReportForm() {
                   </label>
 
                   <div className="flex flex-col gap-3">
+
                     <label className="flex items-center gap-3">
                       <input
                         type="radio"
@@ -326,6 +358,7 @@ function ReportForm() {
               </h2>
 
               <div className="grid md:grid-cols-2 gap-4">
+
                 {/* Safe Shelter */}
                 <label className="flex items-center gap-3 border rounded-xl p-4 hover:bg-[#F9F5FF] cursor-pointer">
                   <input
@@ -417,6 +450,7 @@ function ReportForm() {
 
               <label className="block mb-2 font-medium text-gray-700">
                 {t("reportForm.briefDescription")}{" "}
+
                 <span className="text-gray-400 text-sm">
                   {t("reportForm.optional")}
                 </span>
@@ -441,14 +475,20 @@ function ReportForm() {
             ========================== */}
 
             <div className="bg-[#F9F5FF] border border-[#6A1B9A] rounded-2xl p-6">
+
               <h3 className="font-['Lexend'] text-lg font-semibold text-[#6B46C1] mb-2">
                 {t("reportForm.confidentialityNotice")}
               </h3>
 
               <p className="text-gray-700 leading-relaxed">
                 {t("reportForm.confidentialityText")}{" "}
-                <strong>"{t("reportForm.doNotContact")}"</strong>
+
+                <strong>
+                  "{t("reportForm.doNotContact")}"
+                </strong>
+
                 {", "}
+
                 {t("reportForm.reportReceived")}
               </p>
             </div>
@@ -468,10 +508,9 @@ function ReportForm() {
               disabled={isSubmitting}
               className="w-full bg-[#2F855A] hover:bg-[#276749] disabled:opacity-60 disabled:cursor-not-allowed text-white py-4 rounded-2xl text-lg font-semibold transition duration-300 shadow-lg"
             >
-              {isSubmitting
-                ? t("reportForm.submitting")
-                : t("reportForm.submit")}
+              {isSubmitting ? t("reportForm.submitting") : t("reportForm.submit")}
             </button>
+
           </form>
         </div>
       </div>

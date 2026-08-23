@@ -29,6 +29,13 @@ comment on table public.reports is
 -- default -- we then explicitly allow only what we want.
 alter table public.reports enable row level security;
 
+-- IMPORTANT: RLS policies only restrict what an already-granted role
+-- can do. Postgres also requires the base table-level GRANT before a
+-- role can attempt the operation at all -- without this, inserts fail
+-- with "permission denied for table reports" (42501) even though the
+-- policy below allows it.
+grant insert on public.reports to anon;
+
 -- Allow anyone (anon or authenticated) to INSERT a report.
 -- No USING clause needed for insert; WITH CHECK controls what rows
 -- can be created. `true` = no extra restriction on the row content,
