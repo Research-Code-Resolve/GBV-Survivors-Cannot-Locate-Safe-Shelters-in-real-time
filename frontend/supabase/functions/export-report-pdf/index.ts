@@ -16,9 +16,17 @@
 
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { PDFDocument, StandardFonts, rgb } from "npm:pdf-lib@1.17.1";
+import { corsHeaders } from "../_shared/cors.ts";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
 const SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+
+const jsonHeaders = { ...corsHeaders, "Content-Type": "application/json" };
+const pdfHeaders = (id) => ({
+  ...corsHeaders,
+  "Content-Type": "application/pdf",
+  "Content-Disposition": `attachment; filename="report-${id}.pdf"`,
+});
 
 function wrapText(text, font, size, maxWidth) {
   const words = (text || "").split(/\s+/);
@@ -38,10 +46,14 @@ function wrapText(text, font, size, maxWidth) {
 }
 
 Deno.serve(async (req) => {
+  if (req.method === "OPTIONS") {
+    return new Response(null, { status: 204, headers: corsHeaders });
+  }
+
   if (req.method !== "POST") {
     return new Response(JSON.stringify({ error: "Method not allowed" }), {
       status: 405,
-      headers: { "Content-Type": "application/json" },
+      headers: jsonHeaders,
     });
   }
 
@@ -52,7 +64,7 @@ Deno.serve(async (req) => {
     if (!jwt) {
       return new Response(JSON.stringify({ error: "Not authenticated." }), {
         status: 401,
-        headers: { "Content-Type": "application/json" },
+        headers: jsonHeaders,
       });
     }
 
@@ -60,7 +72,7 @@ Deno.serve(async (req) => {
     if (!reportId) {
       return new Response(
         JSON.stringify({ error: "reportId is required." }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
+        { status: 400, headers: jsonHeaders }
       );
     }
 
@@ -79,38 +91,45 @@ Deno.serve(async (req) => {
     if (userError || !user) {
       return new Response(JSON.stringify({ error: "Not authenticated." }), {
         status: 401,
-        headers: { "Content-Type": "application/json" },
+        headers: jsonHeaders,
       });
     }
 
-    // service_role client for the actual work -- explicit staff check
-    // below, not just relying on RLS, so this function is safe even
-    // if a policy is ever misconfigured.
-    const admin = createClient(SUPABASE_URL, SERVICE_ROLE_KEY);
+    // Use the caller's own JWT to read the report -- this way RLS
+    // policies are enforced. If they can't read the report (because
+    // they're not staff), the read fails and we reject.
+    const callerClient2 = createClient(SUPABASE_URL, SERVICE_ROLE_KEY, {
+      global: { headers: { Authorization: authHeader } },
+    });
 
-    const { data: staffProfile } = await admin
-      .from("staff_profiles")
-      .select("id")
-      .eq("id", user.id)
-      .maybeSingle();
-
-    if (!staffProfile) {
-      return new Response(
-        JSON.stringify({ error: "You do not have staff access." }),
-        { status: 403, headers: { "Content-Type": "application/json" } }
-      );
-    }
-
-    const { data: report, error: reportError } = await admin
+    const { data: report, error: reportError } = await callerClient2
       .from("reports")
       .select("*")
       .eq("id", reportId)
       .maybeSingle();
 
-    if (reportError || !report) {
+    // If the read fails or returns nothing, it's either because the
+    // report doesn't exist OR the caller isn't staff (RLS denied it).
+    // Either way, reject with 403/404 appropriately.
+    if (reportError) {
+      if (reportError.code === "PGRST116") {
+        // "Requested resource not found" -- report doesn't exist
+        return new Response(JSON.stringify({ error: "Report not found." }), {
+          status: 404,
+          headers: jsonHeaders,
+        });
+      }
+      // Any other error (including permission denied via RLS)
+      return new Response(
+        JSON.stringify({ error: "You do not have access to this report." }),
+        { status: 403, headers: jsonHeaders }
+      );
+    }
+
+    if (!report) {
       return new Response(JSON.stringify({ error: "Report not found." }), {
         status: 404,
-        headers: { "Content-Type": "application/json" },
+        headers: jsonHeaders,
       });
     }
 
@@ -245,6 +264,7 @@ Deno.serve(async (req) => {
     // Log the export -- who, which report, when. Insert-only table,
     // written here with service_role so it can't be bypassed or
     // altered from the client.
+    const admin = createClient(SUPABASE_URL, SERVICE_ROLE_KEY);
     await admin.from("report_export_log").insert({
       report_id: report.id,
       exported_by: user.id,
@@ -252,15 +272,12 @@ Deno.serve(async (req) => {
 
     return new Response(pdfBytes, {
       status: 200,
-      headers: {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="report-${report.id}.pdf"`,
-      },
+      headers: pdfHeaders(report.id),
     });
   } catch (err) {
     return new Response(
       JSON.stringify({ error: "Unexpected error generating PDF." }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
+      { status: 500, headers: jsonHeaders }
     );
   }
 });

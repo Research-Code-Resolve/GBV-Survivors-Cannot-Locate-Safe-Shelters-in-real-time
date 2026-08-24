@@ -14,9 +14,12 @@
 
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { encodeHex } from "https://deno.land/std@0.224.0/encoding/hex.ts";
+import { corsHeaders } from "../_shared/cors.ts";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
 const SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+
+const jsonHeaders = { ...corsHeaders, "Content-Type": "application/json" };
 
 async function sha256Hex(input) {
   const data = new TextEncoder().encode(input);
@@ -25,10 +28,19 @@ async function sha256Hex(input) {
 }
 
 Deno.serve(async (req) => {
+  // Browsers send an OPTIONS preflight before the real POST for any
+  // cross-origin request with a JSON body / auth header. Without this
+  // branch, the preflight gets a non-2xx response and the browser
+  // blocks the actual request with a CORS error -- the request never
+  // even reaches the logic below.
+  if (req.method === "OPTIONS") {
+    return new Response(null, { status: 204, headers: corsHeaders });
+  }
+
   if (req.method !== "POST") {
     return new Response(JSON.stringify({ error: "Method not allowed" }), {
       status: 405,
-      headers: { "Content-Type": "application/json" },
+      headers: jsonHeaders,
     });
   }
 
@@ -38,14 +50,14 @@ Deno.serve(async (req) => {
     if (!email || !password || !accessCode) {
       return new Response(
         JSON.stringify({ error: "Email, password, and access code are required." }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
+        { status: 400, headers: jsonHeaders }
       );
     }
 
     if (password.length < 8) {
       return new Response(
         JSON.stringify({ error: "Password must be at least 8 characters." }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
+        { status: 400, headers: jsonHeaders }
       );
     }
 
@@ -66,14 +78,14 @@ Deno.serve(async (req) => {
     if (codeError || !codeRow) {
       return new Response(
         JSON.stringify({ error: "Invalid access code." }),
-        { status: 401, headers: { "Content-Type": "application/json" } }
+        { status: 401, headers: jsonHeaders }
       );
     }
 
     if (codeRow.used_at) {
       return new Response(
         JSON.stringify({ error: "This access code has already been used." }),
-        { status: 401, headers: { "Content-Type": "application/json" } }
+        { status: 401, headers: jsonHeaders }
       );
     }
 
@@ -87,7 +99,7 @@ Deno.serve(async (req) => {
     if (createError) {
       return new Response(
         JSON.stringify({ error: createError.message }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
+        { status: 400, headers: jsonHeaders }
       );
     }
 
@@ -105,7 +117,7 @@ Deno.serve(async (req) => {
       await admin.auth.admin.deleteUser(userId);
       return new Response(
         JSON.stringify({ error: "Could not create staff profile. Please try again." }),
-        { status: 500, headers: { "Content-Type": "application/json" } }
+        { status: 500, headers: jsonHeaders }
       );
     }
 
@@ -117,12 +129,12 @@ Deno.serve(async (req) => {
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: jsonHeaders,
     });
   } catch (err) {
     return new Response(
       JSON.stringify({ error: "Unexpected error. Please try again." }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
+      { status: 500, headers: jsonHeaders }
     );
   }
 });

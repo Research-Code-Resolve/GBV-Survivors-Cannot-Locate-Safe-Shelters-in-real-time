@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "../lib/AuthContext";
 
 export default function ProtectedRoute({ children }) {
-  const { session, isStaff, loading } = useAuth();
+  const { session, isStaff, loading, signOut } = useAuth();
 
   if (loading) {
     return (
@@ -34,10 +34,17 @@ export default function ProtectedRoute({ children }) {
           >
             Access pending
           </h1>
-          <p style={{ color: "#333333" }} className="text-sm">
+          <p style={{ color: "#333333" }} className="text-sm mb-6">
             Your account is signed in but has not been granted staff access
             yet. Contact your team admin.
           </p>
+          <button
+            onClick={signOut}
+            style={{ color: "#6A1B9A" }}
+            className="text-sm font-semibold underline"
+          >
+            Sign out
+          </button>
         </div>
       </div>
     );
