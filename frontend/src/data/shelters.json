@@ -1,0 +1,118 @@
+{
+  "shelters": [
+    {
+      "id": 1,
+      "name": "Lilongwe Women's Shelter (LWS)",
+      "district": "Lilongwe City Centre",
+      "address": "Plot 123, Kamuzu Procession Road, Lilongwe",
+      "phone": "+265 1 755 255",
+      "services": [
+        "Emergency shelter",
+        "Medical care",
+        "Counseling",
+        "Legal aid",
+        "Safe housing (temporary)"
+      ],
+      "operatingHours": "24/7",
+      "coordinates": {
+        "lat": -13.9834,
+        "lng": 33.7738
+      }
+    },
+    {
+      "id": 2,
+      "name": "Red Cross Malawi - Lilongwe Centre",
+      "district": "Lilongwe City Centre",
+      "address": "Plot 567, Independence Avenue, Lilongwe",
+      "phone": "+265 1 755 666",
+      "services": [
+        "Emergency response",
+        "First aid and medical support",
+        "Psychosocial support",
+        "Community referrals",
+        "Health information"
+      ],
+      "operatingHours": "24/7",
+      "coordinates": {
+        "lat": -13.9850,
+        "lng": 33.7720
+      }
+    },
+    {
+      "id": 3,
+      "name": "DSW (Department of Social Welfare) - Lilongwe",
+      "district": "Lilongwe City Centre",
+      "address": "Plot 234, Government Complex, Lilongwe",
+      "phone": "+265 1 788 888",
+      "services": [
+        "Social support",
+        "Case management",
+        "Legal referrals",
+        "Family services",
+        "Emergency assistance"
+      ],
+      "operatingHours": "Monday-Friday: 8:00 AM - 5:00 PM, Saturday: 9:00 AM - 1:00 PM",
+      "coordinates": {
+        "lat": -13.9810,
+        "lng": 33.7680
+      }
+    },
+    {
+      "id": 4,
+      "name": "Hope Home Lilongwe",
+      "district": "Kauma",
+      "address": "Plot 890, Kauma Road, Lilongwe",
+      "phone": "+265 1 755 444",
+      "services": [
+        "Safe shelter",
+        "Rehabilitation programs",
+        "Skills training",
+        "Child care support",
+        "Counseling services"
+      ],
+      "operatingHours": "24/7",
+      "coordinates": {
+        "lat": -13.9920,
+        "lng": 33.7900
+      }
+    },
+    {
+      "id": 5,
+      "name": "St. Martin's Community Clinic - Lilongwe",
+      "district": "Bwaila",
+      "address": "Plot 456, Lilongwe Road, Bwaila, Lilongwe",
+      "phone": "+265 1 755 777",
+      "services": [
+        "Medical care",
+        "Emergency treatment",
+        "Health counseling",
+        "Referral services",
+        "Trauma support"
+      ],
+      "operatingHours": "24/7",
+      "coordinates": {
+        "lat": -14.0050,
+        "lng": 33.7850
+      }
+    },
+    {
+      "id": 6,
+      "name": "Lilongwe Safe House Initiative",
+      "district": "Area 36",
+      "address": "Plot 789, Area 36, Lilongwe",
+      "phone": "+265 1 755 999",
+      "services": [
+        "Temporary housing",
+        "Psychosocial support",
+        "Security planning",
+        "Reintegration support",
+        "Community linkages"
+      ],
+      "operatingHours": "24/7",
+      "coordinates": {
+        "lat": -14.0180,
+        "lng": 33.8050
+      }
+    }
+  ]
+}
