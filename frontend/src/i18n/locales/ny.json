@@ -14,12 +14,14 @@
     "privacyNotice": "Ndi zachinsinsi 100% komanso zaulere. Palibe chifukwa chokhala ndi akaunti."
   },
 
-  
   "reportForm": {
     "title": "Nenani Chochitika",
     "subtitle": "Simuli nokha. Lembani fomu yachinsinsi iyi kuti tikuthandizeni kulumikizana ndi ntchito zothandizira zomwe mukufuna.",
 
     "personalInformation": "Zambiri Zaumwini",
+
+    "preferredLanguage": "Chilankhulo Chimene Mumakonda",
+    "selectLanguage": "Sankhani Chilankhulo",
 
     "fullName": "Dzina Lonse",
     "optional": "(Mwakufuna)",
@@ -60,7 +62,7 @@
 
     "confidentialityNotice": "Chidziwitso cha Chinsinsi",
     "confidentialityText": "Zambiri zanu zidzasungidwa mwachinsinsi ndipo zidzagawidwa kokha ndi othandizira ovomerezeka kuti akuthandizeni kupeza thandizo lomwe mukufuna.",
-    "reportReceived": "lipoti lanu lidzalandiridwa, koma sitidzakulumikizani kuti tikufunseni zambiri pokhapokha mutasankha kuti tikulumikizeni.",
+    "reportReceived": "Lipoti lanu lidzalandiridwa, koma sitidzakulumikizani kuti tikufunseni zambiri pokhapokha mutasankha kuti tikulumikizeni.",
 
     "submit": "Tumizani Lipoti",
     "submitting": "Tikutumiza...",
@@ -68,51 +70,102 @@
     "success": "Lipoti lanu latumizidwa bwino."
   },
 
-   "validation": {
-  "district": "Chonde sankhani dera lanu.",
-  "safeNow": "Chonde sonyezani ngati muli pamalo otetezeka pano.",
-  "danger": "Chonde sonyezani ngati munthu amene akukuchitirani nkhanza ali pafupi.",
-  "phoneRequired": "Chonde lembani nambala yanu ya foni chifukwa mwasankha njira yolumikizirana.",
-  "invalidPhone": "Chonde lembani nambala ya foni yolondola."
-},
-
-  
+  "validation": {
+    "district": "Chonde sankhani dera lanu.",
+    "safeNow": "Chonde sonyezani ngati muli pamalo otetezeka pano.",
+    "danger": "Chonde sonyezani ngati munthu amene akukuchitirani nkhanza ali pafupi.",
+    "supportNeeded": "Chonde sankhani mtundu wa thandizo limodzi.",
+    "phoneRequired": "Chonde lembani nambala yanu ya foni chifukwa mwasankha njira yolumikizirana.",
+    "invalidPhone": "Chonde lembani nambala ya foni yolondola."
+  },
 
   "services": {
-  "title": "Ntchito Zomwe Zikupezeka",
-  "shelters": {
-    "label": "Malo Othawirako",
-    "description": "Malo otetezeka okhala usikuuno"
-  },
-  "healthPep": {
-    "label": "Zaumoyo ndi PEP",
-    "description": "Chithandizo chaumoyo, PEP mkati mwa maola 72"
-  },
-  "policeVsu": {
-    "label": "Police VSU",
-    "description": "Magulu Othandiza Ozunzidwa"
-  },
-  "legalAid": {
-    "label": "Thandizo la Malamulo",
-    "description": "Dziwani za ufulu wanu, pezani thandizo"
-  }
-},
+    "title": "Ntchito Zomwe Zikupezeka",
 
-"emergency": {
-  "title": "Manambala a Mwadzidzidzi",
-  "instruction": "Dinani nambala kuti muyimbe mwachindunji.",
-  "gbvLine": "Nambala ya GBV",
-  "childline": "Childline",
-  "police": "Apolisi"
-},
+    "shelters": {
+      "label": "Malo Othawirako",
+      "description": "Malo otetezeka okhala usikuuno"
+    },
 
- "rightsSection": {
+    "healthPep": {
+      "label": "Zaumoyo ndi PEP",
+      "description": "Chithandizo chaumoyo, PEP mkati mwa maola 72"
+    },
+
+    "policeVsu": {
+      "label": "Police VSU",
+      "description": "Magulu Othandiza Ozunzidwa"
+    },
+
+    "legalAid": {
+      "label": "Thandizo la Malamulo",
+      "description": "Dziwani za ufulu wanu, pezani thandizo"
+    }
+  },
+
+  "emergency": {
+    "title": "Manambala a Mwadzidzidzi",
+    "instruction": "Dinani nambala kuti muyimbe mwachindunji.",
+    "gbvLine": "Nambala ya GBV",
+    "childline": "Childline",
+    "police": "Apolisi"
+  },
+
+  "rightsSection": {
     "title": "Dziwani za Ufulu Wanu",
-    "legalProtectionRights": "Dziwani Ufulu Wanu wa Mwalamulo ndi Chitetezo"
+    "legalProtectionRights": "Dziwani Ufulu Wanu wa Mwalamulo ndi Chitetezo",
+
+    "rights": {
+      "safety": {
+        "title": "Ufulu Wotetezeka ndi Chitetezo",
+        "description": "Muli ndi ufulu wofunafuna chitetezo ku nkhanza, ziwopsezo, kapena ngozi zina komanso kupeza chithandizo choyenera cha chitetezo."
+      },
+
+      "dignity": {
+        "title": "Ufulu wa Ulemu ndi Kulemekezedwa",
+        "description": "Muli ndi ufulu wochitiridwa ulemu, chifundo, ndi kulemekezedwa nthawi yonse yomwe mukulandira thandizo kapena kupereka lipoti."
+      },
+
+      "confidentiality": {
+        "title": "Ufulu wa Chinsinsi",
+        "description": "Zambiri zanu ndi zomwe mwanena ziyenera kusungidwa mwachinsinsi ndipo zigawidwe pokhapokha ngati pakufunika komanso moyenera."
+      },
+
+      "choice": {
+        "title": "Ufulu Wopanga Zosankha Zanu",
+        "description": "Muli ndi ufulu wolandira zambiri zomveka zokhudza njira zomwe zilipo komanso kupanga zisankho zodziwa bwino zokhudza thandizo lomwe mukufuna, ngati kuli koyenera."
+      },
+
+      "nonDiscrimination": {
+        "title": "Ufulu Wosasankhidwa",
+        "description": "Muli ndi ufulu wolandira thandizo popanda kusankhidwa chifukwa cha jenda, zaka, kulumala, mbiri yanu, kapena zinthu zina zokhudza inu."
+      },
+
+      "medical": {
+        "title": "Ufulu wa Thandizo la Zaumoyo",
+        "description": "Muli ndi ufulu wofunafuna chithandizo choyenera cha kuchipatala pambuyo pa nkhanza, kuphatikizapo chithandizo cha thanzi la kugonana ndi kubereka ngati chikufunika."
+      },
+
+      "psychosocial": {
+        "title": "Ufulu wa Thandizo la Maganizo",
+        "description": "Muli ndi ufulu wofunafuna upangiri ndi thandizo lina la maganizo kuti likuthandizeni kuthana ndi zotsatira za nkhanza."
+      },
+
+      "legal": {
+        "title": "Ufulu wa Thandizo la Malamulo",
+        "description": "Muli ndi ufulu wolandira zambiri zokhudza njira zamalamulo komanso kufunafuna thandizo loyenera la malamulo ndi chilungamo."
+      },
+
+      "supportServices": {
+        "title": "Ufulu Wopeza Ntchito Zothandizira",
+        "description": "Mutha kufunafuna thandizo kuchokera ku ntchito za zaumoyo, zachitukuko, apolisi, zamalamulo, ndi chitetezo kutengera zosowa zanu."
+      }
+    }
   },
 
   "trustedPartners": {
     "title": "Othandizana Odalirika",
+
     "partners": {
       "ministryGender": "Unduna woona za kusiyana kwa amai ndi abambo",
       "policeVsu": "Gulu la Apolisi la VSU",
@@ -121,23 +174,23 @@
   },
 
   "accessibility": {
-  "textSize": "Kukula kwa mawu",
-  "normal": "Wamba",
-  "large": "Kwakukulu",
-  "xLarge": "Kwakukulu kwambiri",
-  "highContrast": "Kusiyanitsa kwakukulu",
-  "on": "Kuyatsa",
-  "off": "Kuzimitsa"
-},
+    "textSize": "Kukula kwa mawu",
+    "normal": "Wamba",
+    "large": "Kwakukulu",
+    "xLarge": "Kwakukulu kwambiri",
+    "highContrast": "Kusiyanitsa kwakukulu",
+    "on": "Kuyatsa",
+    "off": "Kuzimitsa"
+  },
 
   "historyHelp": {
-  "title": "Momwe Mungachotsere Mbiri Yanu Yosakatula Mosamala",
-  "chrome": "Chrome (Android):",
-  "chromeInstructions": "Tsegulani Menu (⋮) → History → Clear browsing data → sankhani \"History\" ndi \"Cookies\" → Clear data.",
-  "safari": "Safari (iPhone):",
-  "safariInstructions": "Tsegulani pulogalamu ya Settings → Safari → Clear History and Website Data.",
-  "safetyNote": "Izi zimachotsa mbiri yosakatula pa chipangizo chanu, koma sizichotsa zolemba zomwe zimasungidwa ndi kampani yanu ya foni kapena wopereka Wi-Fi. Ngati kuli kotetezeka, gwiritsani ntchito foni ya mnzanu kapena kompyuta ya laibulale ya anthu onse."
-},
+    "title": "Momwe Mungachotsere Mbiri Yanu Yosakatula Mosamala",
+    "chrome": "Chrome (Android):",
+    "chromeInstructions": "Tsegulani Menu (⋮) → History → Clear browsing data → sankhani \"History\" ndi \"Cookies\" → Clear data.",
+    "safari": "Safari (iPhone):",
+    "safariInstructions": "Tsegulani pulogalamu ya Settings → Safari → Clear History and Website Data.",
+    "safetyNote": "Izi zimachotsa mbiri yosakatula pa chipangizo chanu, koma sizichotsa zolemba zomwe zimasungidwa ndi kampani yanu ya foni kapena wopereka Wi-Fi. Ngati kuli kotetezeka, gwiritsani ntchito foni ya mnzanu kapena kompyuta ya laibulale ya anthu onse."
+  },
 
   "footer": {
     "privacyPolicy": "Ndondomeko Yachinsinsi",
@@ -145,7 +198,6 @@
     "contactUs": "Lumikizanani Nafe (Osati Zadzidzidzi)",
     "copyright": "Safe Haven Malawi"
   },
-
 
   "language": {
     "select": "Sankhani Chinenero",

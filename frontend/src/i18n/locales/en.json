@@ -14,13 +14,14 @@
     "privacyNotice": "100% anonymous and free. No account needed."
   },
 
-
-
   "reportForm": {
     "title": "Report an Incident",
     "subtitle": "You are not alone. Complete this confidential form to help us connect you with the support services you need.",
 
     "personalInformation": "Personal Information",
+
+    "preferredLanguage": "Preferred Language",
+    "selectLanguage": "Select Language",
 
     "fullName": "Full Name",
     "optional": "(Optional)",
@@ -61,7 +62,7 @@
 
     "confidentialityNotice": "Confidentiality Notice",
     "confidentialityText": "Your information will be handled confidentially and only shared with authorized service providers to help you access the support you need.",
-    "reportReceived": "your report will still be received, but no follow-up communication will be initiated unless you choose otherwise.",
+    "reportReceived": "Your report will still be received, but no follow-up communication will be initiated unless you choose otherwise.",
 
     "submit": "Submit Report",
     "submitting": "Submitting...",
@@ -69,54 +70,102 @@
     "success": "Your report has been submitted successfully."
   },
 
-   "validation": {
-  "district": "Please select your district.",
-  "safeNow": "Please indicate whether you are currently safe.",
-  "danger": "Please indicate whether the perpetrator is nearby.",
-  "phoneRequired": "Please enter your phone number for the selected contact method.",
-  "invalidPhone": "Please enter a valid phone number."
-},
-
-
- 
+  "validation": {
+    "district": "Please select your district.",
+    "safeNow": "Please indicate whether you are currently safe.",
+    "danger": "Please indicate whether the perpetrator is nearby.",
+    "supportNeeded": "Please select at least one type of support.",
+    "phoneRequired": "Please enter your phone number for the selected contact method.",
+    "invalidPhone": "Please enter a valid phone number."
+  },
 
   "services": {
-  "title": "Services Offered",
-  "shelters": {
-    "label": "Shelters",
-    "description": "Safe places to stay tonight"
-  },
-  "healthPep": {
-    "label": "Health & PEP",
-    "description": "Medical care, 72-hour PEP window"
-  },
-  "policeVsu": {
-    "label": "Police VSU",
-    "description": "Victim Support Units"
-  },
-  "legalAid": {
-    "label": "Legal Aid",
-    "description": "Know your rights, get help"
-  }
-},
+    "title": "Services Offered",
 
-"emergency": {
-  "title": "Emergency Contacts",
-  "instruction": "Tap a number to call directly.",
-  "gbvLine": "GBV Line",
-  "childline": "Childline",
-  "police": "Police"
-},
+    "shelters": {
+      "label": "Shelters",
+      "description": "Safe places to stay tonight"
+    },
 
-"rightsSection": {
+    "healthPep": {
+      "label": "Health & PEP",
+      "description": "Medical care, 72-hour PEP window"
+    },
+
+    "policeVsu": {
+      "label": "Police VSU",
+      "description": "Victim Support Units"
+    },
+
+    "legalAid": {
+      "label": "Legal Aid",
+      "description": "Know your rights, get help"
+    }
+  },
+
+  "emergency": {
+    "title": "Emergency Contacts",
+    "instruction": "Tap a number to call directly.",
+    "gbvLine": "GBV Line",
+    "childline": "Childline",
+    "police": "Police"
+  },
+
+  "rightsSection": {
     "title": "Learn About Your Rights",
-    "legalProtectionRights": "Know Your Legal & Protection Rights"
+    "legalProtectionRights": "Know Your Legal & Protection Rights",
+
+    "rights": {
+      "safety": {
+        "title": "Right to Safety and Protection",
+        "description": "You have the right to seek protection from further violence, threats, or harm and to access appropriate safety and protection services."
+      },
+
+      "dignity": {
+        "title": "Right to Dignity and Respect",
+        "description": "You have the right to be treated with dignity, compassion, and respect throughout the support and reporting process."
+      },
+
+      "confidentiality": {
+        "title": "Right to Confidentiality",
+        "description": "Your personal information and disclosure should be handled confidentially and shared only when necessary and appropriate."
+      },
+
+      "choice": {
+        "title": "Right to Make Your Own Choices",
+        "description": "You have the right to receive clear information about available options and make informed decisions about the support you want, where applicable."
+      },
+
+      "nonDiscrimination": {
+        "title": "Right to Non-Discrimination",
+        "description": "You have the right to receive support without discrimination based on gender, age, disability, background, or other personal circumstances."
+      },
+
+      "medical": {
+        "title": "Right to Health and Medical Support",
+        "description": "You have the right to seek appropriate medical care and support following violence, including sexual and reproductive health services where needed."
+      },
+
+      "psychosocial": {
+        "title": "Right to Psychosocial Support",
+        "description": "You have the right to seek counselling and other psychosocial support to help you cope with the effects of violence."
+      },
+
+      "legal": {
+        "title": "Right to Legal Support",
+        "description": "You have the right to information about legal options and to seek appropriate legal assistance and justice services."
+      },
+
+      "supportServices": {
+        "title": "Right to Access Support Services",
+        "description": "You can seek support from appropriate health, social, police, legal, and protection services depending on your needs."
+      }
+    }
   },
-
-
 
   "trustedPartners": {
     "title": "Trusted Partners",
+
     "partners": {
       "ministryGender": "Ministry of Gender",
       "policeVsu": "Police VSU",
@@ -125,32 +174,30 @@
   },
 
   "accessibility": {
-  "textSize": "Text size",
-  "normal": "Normal",
-  "large": "Large",
-  "xLarge": "X-Large",
-  "highContrast": "High contrast",
-  "on": "On",
-  "off": "Off"
-},
+    "textSize": "Text size",
+    "normal": "Normal",
+    "large": "Large",
+    "xLarge": "X-Large",
+    "highContrast": "High contrast",
+    "on": "On",
+    "off": "Off"
+  },
 
-"historyHelp": {
-  "title": "How to clear your browsing history safely",
-  "chrome": "Chrome (Android):",
-  "chromeInstructions": "Menu (⋮) → History → Clear browsing data → select \"History\" and \"Cookies\" → Clear data.",
-  "safari": "Safari (iPhone):",
-  "safariInstructions": "Settings app → Safari → Clear History and Website Data.",
-  "safetyNote": "This clears your device's history but not your mobile network or Wi-Fi provider's records. If it's safer, use a friend's phone or a public library computer."
-},
+  "historyHelp": {
+    "title": "How to clear your browsing history safely",
+    "chrome": "Chrome (Android):",
+    "chromeInstructions": "Menu (⋮) → History → Clear browsing data → select \"History\" and \"Cookies\" → Clear data.",
+    "safari": "Safari (iPhone):",
+    "safariInstructions": "Settings app → Safari → Clear History and Website Data.",
+    "safetyNote": "This clears your device's history but not your mobile network or Wi-Fi provider's records. If it's safer, use a friend's phone or a public library computer."
+  },
 
- "footer": {
+  "footer": {
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
     "contactUs": "Contact Us (Non-Emergency)",
     "copyright": "Safe Haven Malawi"
   },
-
-
 
   "language": {
     "select": "Select Language",
@@ -158,4 +205,3 @@
     "chichewa": "Chichewa"
   }
 }
-
